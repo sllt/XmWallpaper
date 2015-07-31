@@ -4,25 +4,45 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 
 public class MainActivity extends Activity {
 
-    @ViewInject(R.id.hello)
-    Button btn;
+    public static final String BASE_URL = "http://img.infinitynewtab.com/InfinityWallpaper/7_27.jpg";
+
+    @ViewInject(R.id.current_img)
+    ImageView current_img;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_main);
 
         ViewUtils.inject(this);
 
-        btn.setText("world");
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setImage(current_img);
+
+    }
+
+
+    public void setImage(View v) {
+        BitmapUtils imgUtils = new BitmapUtils(this);
+        imgUtils.display(v, BASE_URL);
     }
 
     @Override
