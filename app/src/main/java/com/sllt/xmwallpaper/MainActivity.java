@@ -14,6 +14,10 @@ import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
+
 
 public class MainActivity extends Activity {
 
@@ -36,6 +40,25 @@ public class MainActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setImage(current_img);
+
+    }
+
+    public int randInt(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
+
+    public void currentDate() {
+        Date d = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public void randomDate() {
 
     }
 
